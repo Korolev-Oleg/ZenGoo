@@ -1,0 +1,28 @@
+node_modulesgit clone git@bitbucket.org:chomarian/zengoo.git/
+dist/
+venv
+env
+.idea
+.vscode
+npm-debug.log
+yarn-error.log
+__pycache__
+# Editor directories and files
+
+*.suo
+*.ntvs*
+*.njsproj
+*.sin
+project.db
+yarn.lock
+package-lock.json
+#prodlogistica/settings.py
+./static/
+/static/
+*.pyc
+*.rdb
+media
+
+# Django static files
+config/templates/
+/config/static/

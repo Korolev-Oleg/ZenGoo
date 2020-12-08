@@ -1,0 +1,1 @@
+powershell.exe -ExecutionPolicy Bypass -NoLogo -NoProfile -NoExit -Command "python -m venv venv;.\venv\Scripts\activate;pip install -r requirements.txt;python integration.py"

@@ -1,0 +1,30 @@
+[*]
+charset = utf-8
+indent_size = 4
+indent_style = space
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+trim_trailing_whitespace = false
+tab_width = 4
+
+[*.jade]
+tab_width = 4
+
+[*.{vue,js,json,html,css}]
+max_line_length = off
+indent_size = 2
+ij_wrap_on_typing = false
+ij_any_wrap_long_lines = false
+
+[.js]
+tab_width = 2
+
+[*.sass]
+end_of_line=crlf
+
+[*.py]
+max_line_length = 120
+ij_visual_guides = 80, 120
