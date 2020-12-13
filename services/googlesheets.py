@@ -34,8 +34,10 @@ class Headers:
     createdDate = next(__column_id__)
     changedDate = next(__column_id__)
     id = next(__column_id__)
+
+    columns_count = __columns__ - 1
     __excluded_fields__ = [
-        'from_zero', 'iter_attrs', 'decrement']
+        'from_zero', 'iter_attrs', 'decrement', 'columns_count']
 
     def iter_attrs(self):
         for key in self.__dir__():
