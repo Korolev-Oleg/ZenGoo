@@ -112,20 +112,21 @@ def google_to_zen():
     diff = zen.get_diff()
     transactions: list = diff.transactions
     for transaction_obj in transactions:
-        zen_tr = zen.make_named_transaction(transaction_obj)
-        if not zen_tr.deleted:
-            for goo_tr in google_transactions[1:]:
-                goo_id = goo_tr[head.id - 1]
-                if goo_id == zen_tr.id:
-                    goo_changed = goo_tr[head.changedDate - 1]
-                    goo_changed = zen.make_timestamp(goo_changed)
+        zen_trns = zen.make_named_transaction(transaction_obj)
+        if not zen_trns.deleted:
+            for goo_trns in google_transactions[1:]:  # without headers
+                if len(goo_trns) == goo.headers.columns_count:
+                    goo_id = goo_trns[head.id - 1]
+                    if goo_id == zen_trns.id:
+                        goo_changed = goo_trns[head.changedDate - 1]
+                        goo_changed = zen.make_timestamp(goo_changed)
 
-                    # preparing changes
-                    if goo_changed > zen_tr.changed:
-                        zen_tr.changed = goo_changed
-                        zen_tr.comment = goo_tr[head.comment - 1]
-                        zen_tr.payee = goo_tr[head.payee - 1]
-                        changed.append(zen_tr().to_dict())
+                        # preparing changes
+                        if goo_changed > zen_trns.changed:
+                            zen_trns.changed = goo_changed
+                            zen_trns.comment = goo_trns[head.comment - 1]
+                            zen_trns.payee = goo_trns[head.payee - 1]
+                            changed.append(zen_trns().to_dict())
 
     response = zen.update(changed)
     result = response.to_dict().get('transaction')
