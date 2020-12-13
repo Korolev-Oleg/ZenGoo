@@ -22,6 +22,7 @@ class ZenMoney(zenmoney.Request):
     credentials: dict
     current_diff: zenmoney.diff
     datetime_format: str = '%d.%m.%Y, %H:%M:%S'
+    datetime_format_old: str = '%Y.%m.%d %H.%M.%S'
     current_tags: list[str] = []
     current_payees: list
 
@@ -340,7 +341,13 @@ class ZenMoney(zenmoney.Request):
         return transaction_date >= (datetime.now() - months)
 
     def make_timestamp(self, str_date):
-        timetuple = datetime.strptime(str_date, self.datetime_format).timetuple()
+        try:
+            timetuple = datetime.strptime(
+                str_date, self.datetime_format).timetuple()
+        except ValueError:
+            timetuple = datetime.strptime(
+                str_date, self.datetime_format_old).timetuple()
+
         return int(time.mktime(timetuple))
 
 
