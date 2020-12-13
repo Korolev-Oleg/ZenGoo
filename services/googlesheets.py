@@ -240,11 +240,12 @@ class GooSheet:
 
 
 def write_tags(payees, tags: list, worksheet: gspread.models.Worksheet):
+    payees_range = 'A1:A{}'.format(len(payees) + 1)
     worksheet.batch_update([{
         'range': f'C1:{len(tags)}',
         'values': tags
     }, {
-        'range': 'A1:A100',
+        'range': payees_range,
         'values': [[p] for p in payees]
     }],
         value_input_option='USER_ENTERED')
