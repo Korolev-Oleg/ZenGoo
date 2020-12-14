@@ -226,7 +226,7 @@ class ZenMoney(zenmoney.Request):
                 payees = []
                 for transaction in self.transactions:
                     if transaction.payee:
-                        if not payees.count(transaction.payee):
+                        if transaction.payee not in payees:
                             payees.append(transaction.payee)
                 return payees
 

@@ -26,4 +26,4 @@ media
 # Django static files
 config/templates/
 /config/static/
-keys/
+/keys/
