@@ -251,7 +251,7 @@ def write_tags(payees, tags: list, worksheet: gspread.models.Worksheet):
         value_input_option='USER_ENTERED')
 
 
-def make_tags_worksheet(payees, tags, goo: GooSheet):
+def make_tags_worksheet(payees, categories, goo: GooSheet):
     try:
         worksheet = goo.spreadsheet.worksheet('Tags')
         goo.spreadsheet.values_clear(range='Tags!A1:J1000')
@@ -259,10 +259,10 @@ def make_tags_worksheet(payees, tags, goo: GooSheet):
         worksheet = goo.spreadsheet.add_worksheet(
             'Tags',
             cols=99,
-            rows=len(tags) + 100
+            rows=len(categories) + 100
         )
 
-    write_tags(payees, tags, worksheet)
+    write_tags(payees, categories, worksheet)
 
 
 def set_data_validation(goo):
