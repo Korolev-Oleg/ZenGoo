@@ -226,7 +226,8 @@ class ZenMoney(zenmoney.Request):
                 payees = []
                 for transaction in self.transactions:
                     if transaction.payee:
-                        payees.append(transaction.payee)
+                        if not payees.count(transaction.payee):
+                            payees.append(transaction.payee)
                 return payees
 
         self.current_diff = NamedDiff
