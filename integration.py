@@ -93,7 +93,7 @@ def zen_to_google(credentials_file, months=12,
             value_input_option='USER_ENTERED')
 
         make_tags_worksheet(
-            tags=zen.get_related_categories(),
+            categories=zen.get_related_categories(),
             goo=goo, payees=zen.current_payees
         )
 
@@ -133,9 +133,9 @@ def google_to_zen():
     return len(result) if result else 0
 
 
-def two_way_integration():
+def two_way_integration(months):
     google_to_zen()
-    zen_to_google()
+    zen_to_google(ZEN_MONEY_CREDENTIALS_FILE, months=months)
 
 
 if __name__ == '__main__':
