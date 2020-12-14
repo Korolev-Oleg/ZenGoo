@@ -77,9 +77,12 @@ def start():
                 default_question())
 
             # set months
-            if default[0].count('1)'):
-                default[1] = inquirer.prompt(
+            if default[0].count('1)') or default[0].count('3)'):
+                month = inquirer.prompt(
                     month_question())[1]
+                month = month.replace('\x08', '')
+                default[1] = int(month)
+
             clear()
 
             # if choice settings
@@ -145,7 +148,7 @@ def start():
 
         # ZenMoney <> GoogleSh
         elif default[0].count('3)'):
-            two_way_integration()
+            two_way_integration(months=default[1])
 
         # Exit
         elif default[0].count('5)'):
